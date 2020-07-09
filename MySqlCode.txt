@@ -1,0 +1,20 @@
+/* MySqlCode to create taxi_bookings table in the database.
+   Student name: Amrita Sen */
+
+CREATE TABLE taxi_bookings (
+	booking_number INT(20) AUTO_INCREMENT,
+	booking_date DATE NOT NULL,
+	booking_time TIME NOT NULL,
+	first_name VARCHAR(30) NOT NULL,
+	last_name  VARCHAR(30) NOT NULL,
+	phone_number INT(10) NOT NULL,
+	unit_number VARCHAR(10) NULL DEFAULT NULL,
+	street_number INT(6) NOT NULL,
+	street_name  VARCHAR(255) NOT NULL,
+	suburb  VARCHAR(255) NOT NULL,
+	destination_suburb VARCHAR(255) NOT NULL,
+	pickup_date DATE NOT NULL,
+	pickup_time TIME NOT NULL,
+	booking_status VARCHAR (10) NOT NULL,
+	PRIMARY KEY (booking_number)
+);

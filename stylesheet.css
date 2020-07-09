@@ -1,0 +1,112 @@
+/* This stylesheet.css file has code used to style the booking.html and admin.html pages.
+   Student name: Amrita Sen */
+   
+	/* [THE LABELS] */
+	label {
+		clear: both;
+		float:left;
+		margin-left:25px;
+		display: inline-block; 
+		width: 20%;
+		text-align: right;
+		padding: 5px 5px;
+		font-weight: bold;
+	}
+
+	/* Pickup time */
+	label [for=pickupTime] {
+		clear: both;
+		float:right;
+		display: inline-block; 
+		width: 20%;
+		padding: 5px 5px;
+		font-weight: bold;
+	}
+
+	/* [THE INPUT] */
+	/* all text input */
+	input[type=text], select {
+		width: 50%;
+		padding: 5px 5px;
+		display: inline-block; 
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		margin-left:25px;
+	}
+	
+	/* Phone number */
+	input[id=phoneNumber], select {
+		width: 25%;
+		padding: 5px 5px;
+		display: inline-block; 
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		margin-left:25px;
+	}
+
+	/* Pickup date and time */
+	input[type=date], input[type=time],select {
+		width: 18%;
+		padding: 5px 5px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		margin-left:25px;
+		margin-right:65px;
+	}
+
+	/* Unit number */
+	input[name=unitNum],select {
+		width: 10%;
+		padding: 5px 5px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		margin-left:40px;
+		margin-right:45px;
+	}
+	
+	/* Street number */
+	input[name=streetNum],select {
+		width: 10%;
+		padding: 5px 5px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		margin-left:25px;
+		margin-right:45px;
+	}
+
+	/* [THE FORM BUTTON] */
+	input.formButton {
+		background-color: purple;
+		color: white;
+		padding: 7px 45px;
+		text-align: center;
+		text-decoration: none;
+		border: none;
+		border-radius: 8px;
+		font-size: 20px;
+		cursor: pointer;
+	}
+	
+	/* [REQUIRED] */
+	.required
+	{
+		color: red;
+	}
+	
+	/* [THE FOOTER] */
+	/* unvisited link */
+	footer a:link{
+		text-decoration: none;
+	}
+	
+	/* visited link */
+	footer a:visited{
+		color: purple;
+	}
+	
+	/* mouse over link */
+	footer a:hover{
+		color: blue;
+		font-size: 102%;
+		text-decoration: underline;
+	}

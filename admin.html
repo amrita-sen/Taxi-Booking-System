@@ -1,0 +1,63 @@
+<!-- This web page allows administrative people of CabsOnline to view those taxi booking requests that need to be assigned 
+     a taxi as soon as possible and to assign taxi for a particular booking request. Authentication is not required.  -->
+<!-- Student name: Amrita Sen -->
+<!DOCTYPE html>
+<html XMLns="http://www.w3.org/1999/xHTML"> 
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">  
+	<link rel="stylesheet" type="text/css" href="w3.css">           <!-- External CSS framework with support for desktop, tablet, and mobile design by default -->
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">   <!-- External CSS file -->
+	<script type="text/javascript" src="xhr.js"></script>			<!-- Contains XHR object creation function that caters for browser differences -->
+	<script type="text/javascript" src="admin.js"></script>			<!-- Javascript code for the admin component -->
+	<title>CabsOnline Admin Page</title>
+</head> 
+<body>
+	<!-- Page heading -->
+	<div class="w3-container w3-mobile">
+		<h1 class="w3-jumbo w3-text-red w3-mobile"><img src= "CarLogo.JPG" width="125" height="140">   CabsOnline</h1>
+		<h4 class="w3-text-red w3-mobile"><em>local | reliable | safe taxis</em></h4>		
+	</div>
+	<!-- Greeting -->
+	<div class="w3-container w3-text-brown"> 
+		<h1>Welcome Admin!</h1>
+	</div>
+	<!-- Form heading -->
+	<h2 style="color:red;" align="center">What would you like to do?</h2><br/>
+	<!-- Form -->
+	<div class="w3-container w3-mobile" align = "center"> 
+		<div class="w3-row w3-mobile">
+			<form>
+				<!-- Display pickup requests -->
+				<div id="displayRequests" class="w3-container w3-cell w3-mobile w3-border w3-round-large w3-hover-border-teal" align = "center">
+					<h2 style="color:brown;">Display Pickup Requests</h2>
+					<h6 style="color:brown;">(With pickup time within 2 hours from now)</h6><br/>
+					<!-- Form button. When clicked will invoke the requesting() function from admin.js file. -->
+					<input id="formButton" name="requests" type="button" class = "formButton" onclick="requesting('display.php', 'confirmation', 'date')" 
+						value='Display Requests'>
+					<br/><br/>
+				</div>
+				<!-- Empty cell to create space between the display and assign containers. -->
+				<div class="w3-container w3-cell w3-mobile"><br/></div>
+				<!-- Assign taxi -->
+				<div id="assignTaxi" class="w3-container w3-cell w3-mobile w3-border w3-round-large w3-hover-border-teal" align = "center">
+					<h2 style="color:brown;">Assign Taxi</h2>
+					<label for="bookingNum">Booking number:</label>
+					<input id= "bookingNum" type="text" class = "textIn" name="bookingNum" title="Enter a booking number. Must be greater than 0."><br/><br/>
+					<!-- Form button. When clicked will invoke the assigning() function from admin.js file. -->
+					<input id="formButton" name="assign" type = "button" class = "formButton" 
+					 onclick ="assigning('assign.php','confirmation', bookingNum.value) " value = "Assign Taxi">
+					<br/><br/>
+				</div>
+			</form>
+		</div>
+	<div>
+	<br/><br/>
+	<!-- When selected, system response will be displayed here -->
+	<div class="w3-container">
+		<div id="confirmation" class = "output" align = "center"> 
+			<p></p>  
+		</div> 
+	</div>
+</body> 
+</html>

@@ -1,0 +1,116 @@
+<!-- This web page allows a passenger to put in a taxi booking request. The inputs include customer first and last name, contact phone, pick-up date   
+     and time, pick-up address (unit number if applicable, street number, street name, and suburb) and, destination suburb. Once the user clicks the   
+     make a booking button, input data is validated and if valid, is sent to the server for processing. If all input data is valid, a booking 
+	 confirmation message is displayed on this page. -->
+<!-- Student name: Amrita Sen -->
+<!DOCTYPE html>
+<html XMLns="http://www.w3.org/1999/xHTML"> 
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">  
+	<link rel="stylesheet" type="text/css" href="w3.css">           <!-- External CSS framework with support for desktop, tablet, and mobile design by default -->
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">   <!-- External CSS file -->
+	<script type="text/javascript" src="xhr.js"></script>		          <!-- Contains XHR object creation function that caters for browser differences -->
+	<script type="text/javascript" src="booking.js"></script>	          <!-- Javascript code for the booking component -->
+	<title>CabsOnline Booking Page</title>
+</head> 
+<body onload="setCurrentDateAsDefaultAndMin(); setCurrentTimeAsDefaultValue();"> <!-- On load, set default values for pickup date and time and min value for pickup date. -->
+	<!-- Page heading -->
+	<div class="w3-container w3-mobile">
+		<h1 class="w3-jumbo w3-text-red w3-mobile"><img src= "CarLogo.JPG" width="125" height="140">   CabsOnline</h1>
+		<h4 class="w3-text-red w3-mobile"><em>local | reliable | safe taxis</em></h4>		
+	</div>
+	<!-- Form heading -->
+	<h1 class="w3-center w3-text-brown w3-mobile">Book a Cab</h1>
+	<!-- Form. This will be replaced with a Booking confirmation if the form is successfully submitted. -->
+	<div id = "request" class="w3-container w3-mobile" align="center">
+		<p class="w3-text-red" align="center">* Required information</p>
+		<!-- When a user will try to submit the form, the processBooking() function will be invoked from booking.js file. If input data is invalid,  
+		     information will not be submitted and user will be prompted. -->
+		<form id="myForm" onsubmit = "return processBooking('booking.php', 'request', firstName.value, lastName.value, phoneNumber.value,    
+			  pickupDate.value, pickupTime.value, unitNum.value, streetNum.value, streetName.value, suburb.value, destinationSuburb.value); return false;">
+			<!-- Passenger information -->
+			<div class="w3-card w3-round-xlarge w3-mobile" style="width:60%;">
+				<header class="w3-container w3-pale-red w3-mobile" align="left">
+					<h3 class="w3-text-pink">Passenger Information</h3>
+				</header>
+				<div class="w3-container w3-light-gray" align="left">
+					<br/>
+					<!-- First name -->
+					<label for="firstName">First name</label><span class="required">*</span>
+					<input type="text" id='firstName' class = "textIn" name="firstName" 
+					 title="The first name must begin with and include letters and may include spaces and - (dash)." required>
+					 <span id="firstNameMsg" class="w3-text-red w3-small"></span><br/><br/>	
+					<!-- Last name -->
+					<label for="lastName">Last name</label><span class="required">*</span>					
+					<input type="text" id='lastName' class = "textIn" name="lastName" 
+					 title="The last name must begin with and include letters and may include spaces and - (dash)." required>  
+					 <span id="lastNameMsg" class="w3-text-red w3-small"></span><br/><br/>	
+					<!-- Contact phone -->
+					<label for="phoneNumber">Contact phone number</label><span class="required">*</span>		
+					<input type="text" id='phoneNumber' class = "textIn" name="phoneNumber" 
+					 title="The contact number must only include numbers with no spaces." required>  
+					 <span id="phoneNumMsg" class="w3-text-red w3-small"></span><br/><br/>	
+				</div>
+			</div>
+			<br/>
+			<!-- Pickup details -->
+			<div class="w3-card w3-round-xlarge w3-mobile" style="width:60%;">
+				<header class="w3-container w3-pale-blue" align="left">
+					<h3 class="w3-text-blue">Pickup Details</h3>
+				</header>
+				<div class="w3-container w3-light-gray" align="left">
+					<br/>
+					<!-- Pickup date -->
+					<label for="pickupDate">Pickup date</label><span class="required">*</span>
+					<input type="date" id='pickupDate' name="pickupDate" class = "textIn"  value="" min="" maxlength="10" 
+					 title="Please select a pickup date." required>  
+					 <span id="dateMsg" class="w3-text-red w3-small"></span><br/><br/>	
+					<!-- Pickup time -->
+					<label for="pickupTime">Pickup time</label><span class="required">*</span>
+					<input type="time" id='pickupTime' name="pickupTime" class = "textIn" value="" maxlength="8" 
+					 title="Please select a pickup time, no earlier than the current time." required>
+					 <span id="timeMsg" class="w3-text-red w3-small"></span><br/><br/>						 
+					<!-- Unit number -->
+					<label for="unitNum">Unit number</label> 
+					<input type="text" id='unitNum' name="unitNum" class = "textIn" size="4" maxlength="4" 
+					 title="Please enter the unit number (if applicable)."><br/><br/>	
+					<!-- Street number -->
+					<label for="streetNum">Street number</label><span class="required">*</span>
+					<input type="text" id='streetNum' name="streetNum" class = "textIn" size="4" maxlength="4" 
+					 title="The street number must only include numbers with no spaces." required>
+					 <span id="streetNumMsg" class="w3-text-red w3-small"></span><br/><br/>	
+					<!-- Street name -->
+					<label for="streetName">Street name</label><span class="required">*</span>
+					<input type="text" id='streetName' name="streetName" class = "textIn" 
+					 title="The street name must begin with and include letters and, may include spaces, commas, fullstop - or '." required>
+					 <span id="streetNameMsg" class="w3-text-red w3-small"></span><br/><br/>		
+					<!-- Suburb -->
+					<label for="suburb">Suburb</label><span class="required">*</span>
+					<input type="text" id='suburb' name="suburb" class = "textIn" 
+					 title="The suburb must begin with and include letters and, may include spaces, commas, fullstop, - or '." required>
+					 <span id="subMsg" class="w3-text-red w3-small"></span><br/><br/>		
+				</div>
+			</div>
+			<br/>
+			<!-- Dropoff details -->
+			<div class="w3-card w3-round-xlarge w3-mobile" style="width:60%;">
+				<header class="w3-container w3-pale-green" align="left">
+					<h3 class="w3-text-green">Drop off Details</h3>
+				</header>
+				<div class="w3-container w3-light-gray" align="left">
+					<br/>
+					<!-- Destination suburb -->
+					<label for="destinationSuburb">Destination suburb</label><span class="required">*</span>
+					<input type="text" id='destinationSuburb' name="destinationSuburb" class = "textIn" 
+					 title="The destination suburb must begin with and include letters and, may include spaces, commas, fullstop, - or '." required>
+					 <span id="destSubMsg" class="w3-text-red w3-small"></span><br/><br/>		
+				</div>
+			</div>
+			<br/><br/>
+			<!-- Submit button -->
+			<input id="formButton" name="submit" type = "submit" class = "formButton" value = "Make Booking">				
+ 		</form>
+	</div>
+ </body> 
+</html>
