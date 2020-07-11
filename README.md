@@ -19,7 +19,7 @@ CabsOnline, via its booking component, allows passengers to book taxi services f
 9.	MySqlCode.txt
 10.	CarLogo.JPG (Created online)
 11.	stylesheet.css
-12.	w3.css
+12.	w3.css (a modern CSS framework with support for desktop, tablet, and mobile design by default)
 
 <b>How to use the system:</b><br><br>
 <b>1.	Booking Component (booking.html):</b><br>
